@@ -77,7 +77,7 @@ Czas wyniósł 4.45 min
 #####2c. Zliczanie rekordów
 
 ######MongoDB:
-Instalacja biblioteki dla pythona: [Geojson "LineString"](img/test4.geojson "LineString")pymongo.
+Instalacja biblioteki dla pythona - pymongo.
 ```sh
 sudo easy_install -U setuptools
 sudo python -m easy_install pymongo
@@ -85,4 +85,79 @@ sudo python -m easy_install -U pymongo
 ```
 
 
-Wszystkie komendy znajdują się w pliku
+*Wszystkie komendy znajdują się w pliku ["SKRYPT"](lol "SKRYPT").
+
+####### 1. Znajdź użytkownika wrzucającego film o nicku FCLEANDROELEONARDO
+```py
+>db.youtube.find({'uploader':'FCLEANDROELEONARDO'})
+[
+	{
+		"_id" : ObjectId("55f15665c7447c3da70b5519"),
+		"id" : "--0zjb5SZck",
+		"uploader" : "FCLEANDROELEONARDO",
+		"upload_date" : "2011-08-30",
+		"title" : "Leandro & Leonardo - Cerveja - Videoclipe Oficial",
+		"description" : "Videoclipe Oficial Da Música \" Cerveja \" Em 1997 ! Pra Matar As Saudades !!!",
+		"duration" : "204"
+	}
+]
+```
+
+Realtime:	0m53.017s
+
+####### 2. Zlicz liczbę filmów które w opisie posiadają słowo sex
+```py
+>db.youtube.count({"description": {'$regex' : '.*' + 'sex' + '.*'}})
+11229
+```
+
+Realtime:	0m26.898s
+
+####### 3. Znajdź filmy, które trwają dłużej niż 9998 minut
+```py
+> db.youtube.find({"duration": {"$gt": "9998"}})
+[
+	{
+		"_id" : ObjectId("55f15679c7447c3da71080df"),
+		"id" : "apbfC0SmPLo",
+		"uploader" : "Shesellssheshells",
+		"upload_date" : "2015-02-19",
+		"title" : "Lets Stream DreadOut Act 2",
+		"description" : "Ghosts with the almost. Co-commentary by VoidBurger (http://twitter.com/voidburger), ChipCheezum (http://twitter.com/chipcheezum), and kcgreenn (https://twitter.com/kcgreenn)\n\nLike this channel? Support it on Patreon! https://www.patreon.com/kamoc",
+		"duration" : "9999"
+	},
+	{
+		"_id" : ObjectId("55f1569ac7447c3da719783a"),
+		"id" : "lDLM-dXP-KE",
+		"uploader" : "UCyoTTxSCZ3vQsaFqlNi1qVg",
+		"upload_date" : "2015-05-04",
+		"title" : "Star Wars: The Blackened Mantle (The Prequels Rewritten / Recut)",
+		"description" : "The Star Wars prequel trilogy (Episodes I-III). Re-edited, interwoven, and entirely rewritten using English subtitles over Japanese audio. A story you haven't seen.\n\n\"Star Wars: The Blackened Mantle\" chronicles the rise of a young Jedi named Anakin Skywalker. Haunted by vivid and prophetic nightmares since he was a slave on Tatooine, Anakin is trained to find peace through the Force by his friend and mentor, Jedi Master Obi-Wan Kenobi - until an act of brutal violence shatters Anakin's fragile grip on his own perilous gift.\n\nThis three-year project was inspired by a challenge unwittingly issued by Peter Sciretta of /Film: was Topher Grace's 85-minute recut trilogy genuinely the \"best possible edit of the Star Wars prequels given the footage released and available?\" To test that claim, the creators of this film turned away from the original English footage - and the original script - and pursued an option based on new research showing how our minds integrate written subtitles with spoken language. This was the result.\n\nNOTE: Unlike many other fan-edits of the prequels, \"The Blackened Mantle\" is not simply three separate films glued back-to-back with the fat cut out. It has proper dramatic pacing, new character arcs, reworked image quality, and a heavily modified plot constructed from a brand new, non-chronological script. It is not necessarily compatible with any Star Wars canon other than the original film trilogy (such as the fantastic \"Clone Wars\" animated series). Apologies go out to fluent Japanese speakers, who will likely not be able to watch the film without muting the audio.\n\nThis is a fan-made, not-for-profit edit of the Star Wars prequels. The creators have no affiliation with Twentieth Century Fox, Lucasfilm Ltd., or Walt Disney Studios.",
+		"duration" : "9999"
+	},
+	{
+		"_id" : ObjectId("55f156aac7447c3da71c13fc"),
+		"id" : "OG6hdUJf4Qw",
+		"uploader" : "KlausTrophobie44",
+		"upload_date" : "2013-07-02",
+		"title" : "Monkey Safari Live At Fusion Festival 2013 [DJ-SET]",
+		"description" : "live mix from the Fusion Festival 2013 on saturday 19-22 at Tanzwiese\n\n\nhttps://soundcloud.com/monkey-safari/",
+		"duration" : "9999"
+	}
+]
+```
+
+Realtime	0m18.679s
+
+####### 4. Zlicz liczbę filmów trwających poniżej 1 minuty
+```py
+> db.youtube.count({"duration": {"$lt": "1"}})
+657
+```
+
+Realtime	0m9.874s
+
+######PostgreSQL:
+
+
+
