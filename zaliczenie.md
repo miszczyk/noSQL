@@ -74,7 +74,7 @@ select count(*) from import.youtube;
 ```
 Czas wyniósł 4.45 min
 
-#####2c. Zliczanie rekordów
+#####2c. Agregacje
 
 ######MongoDB:
 Instalacja biblioteki dla pythona - pymongo.
@@ -158,6 +158,60 @@ Realtime	0m18.679s
 Realtime	0m9.874s
 
 ######PostgreSQL:
+
+####### 1. Wyświetl 3 tytuły które zaczynają się od słowa „crazy”.
+```sql
+SELECT data->>'title' AS title FROM import.youtube WHERE data->>'title' like ('crazy%') LIMIT 3;
+```
+Czas 1.2s
+
+![import](img/postgresCrazy.png)
+
+####### 2. Wyswietl 10 nazw flmów wraz z datą uploadu, ktore zostały wrzucone przed 14.10.2010 (pomiń 10).
+```sql
+SELECT data->>'upload_date' AS Upload, data->>'title' AS title FROM import.youtube WHERE data->>'upload_date' < '2010-10-14' LIMIT 10 OFFSET 10;
+```
+Czas 0.15s
+
+![import](img/postgresData.png)
+
+####### 3. Znajdz tytuły filmów wrzuconych przez użytkownika DiSonik.
+```sql
+SELECT data->>'uploader' AS Uploader, data->>'title' AS title FROM import.youtube WHERE data->>'uploader' = 'DiSonik';
+```
+Czas 0.18s
+
+![import](img/postgresUploader.png)
+
+#####2d. GeoJson
+
+Pobralem geoJson z informacjami o stanach w ameryce oraz wykaz trzęsień ziemi na świecie w przeciągu ostatnich 30 dni.
+
+Import do mongo poleceniem:
+```sh
+mongoimport -c states < states.json
+```
+Dodajemy geo-indeks:
+```sh
+> db.states.ensureIndex({"loc": "2dsphere"})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+```
+
+Pobieramy jq:
+```sh
+brew install jq
+```
+
+####Mapki
+
+["Trzęsienia ziemi"](earthquakes.geojson "Trzęsienia ziemi")
+["Stany Ameryki"](states.geojson "Stany Ameryki")
+
 
 
 
