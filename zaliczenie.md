@@ -49,7 +49,7 @@ Importujemy:
 ./pgfutter --port "5431" --pass aidem123 json youtube.json
 ```
 Zużycie procesora:
-Zużycie procesora wachało się pomiędzy 30 a 60% dla rdzeni 1 i 3, oraz 15 - 40% dla pozostałych.
+Zużycie procesora wachało się pomiędzy 30 a 70% dla rdzeni 1 i 3, oraz 20 - 40% dla pozostałych.
 ![import](img/postgresImportProcesory.png)
 
 ![import](img/postgresImportWykres.png)
@@ -210,6 +210,7 @@ brew install jq
 ####Mapki
 
 ["Trzęsienia ziemi"](earthquakes.geojson "Trzęsienia ziemi")
+
 ["Stany Ameryki"](states.geojson "Stany Ameryki")
 
 
