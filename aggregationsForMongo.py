@@ -47,10 +47,10 @@ def CheckNumberOfMoviesShorter():
 	desc = db.youtube.count({"duration": {"$lt": "1"}})
 	print desc
 
-Menus()
+#Menus()
 #PrintUploader()
 #CheckSexOccurence()
 #CheckNumberOfMoviesLongerThan9000()
-#CheckNumberOfMoviesShorter()
+CheckNumberOfMoviesShorter()
 
 
