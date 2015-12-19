@@ -189,7 +189,7 @@ Pobralem geoJson z informacjami o stanach w ameryce oraz wykaz trzęsień ziemi 
 
 Import do mongo poleceniem:
 ```sh
-mongoimport -c states < states.json
+mongoimport --drop -d test -c zipcodes zips.json
 ```
 Dodajemy geo-indeks:
 ```sh
