@@ -250,12 +250,12 @@ Poniższe zapytanie wyświetla mi wszystkie kody pocztowe w obrębie oznaczonego
 { "_id" : "46038", "city" : "FISHERS", "loc" : [ -86.023048, 39.957486 ], "pop" : 11918, "state" : "IN" }
 ...
 ```
-przeklejamy do pliku, a następnie przy pomocy jq parsujemy je do formatu geoJson
+####Przeklejamy do pliku, a następnie przy pomocy jq parsujemy je do formatu geoJson
 ```sh
 cat indiano.json | jq -c '. | {"type": "Feature","geometry" :{"type": "Point","coordinates":[.loc[0],.loc[1]]},"properties":{_id,city,pop,state}}'
 ```
 
-Brakuje nam jednak prefixu, oraz przecinków, poprawiamy to krótkim skryptem:
+####Brakuje nam jednak prefixu, oraz przecinków, poprawiamy to krótkim skryptem:
 ```sh
 #dodaj prefix
 echo  "{ \"type\": \"FeatureCollection\", \"features\": [" > $2
@@ -269,6 +269,7 @@ echo "]}" >> $2
 #dodaj przecinki
 sed -i '' 's/$/,/g' $2
 ```
+####Usuwamy przecinki z 1 i ostatniej linijki i nasz plik geojson jest gotowy:
 
 
 ####Mapki
