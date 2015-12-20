@@ -185,7 +185,7 @@ Czas 0.18s
 
 #####2d. GeoJson
 
-Pobralem geoJson z informacjami o stanach w ameryce oraz wykaz trzęsień ziemi na świecie w przeciągu ostatnich 30 dni.
+Pobralem geoJson z informacjami o kodach pocztowych w Stanach Zjednoczonych.
 
 Import do mongo poleceniem:
 ```sh
