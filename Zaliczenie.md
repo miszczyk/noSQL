@@ -273,6 +273,12 @@ sed -i '' 's/$/,/g' $2
 
 ["Kody pocztowe w Indianie"](indiano.geojson "Kody pocztowe w Indianie")
 
+Znajdź 5 kodów pocztowych w promieniu 10 km od Białego Domu
+```sh
+>db.zipcodes.find({loc: {$near: {$geometry: {type: "Point", coordinates: [-77.03651905059814,38.89834766079331],$maxDistance: 10000}}}}).limit(5)
+```
+
+
 
 
 
