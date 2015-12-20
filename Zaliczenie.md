@@ -85,7 +85,7 @@ sudo python -m easy_install -U pymongo
 ```
 
 
-*Wszystkie komendy znajdują się w pliku ["SKRYPT"](lol "SKRYPT").
+*Wszystkie komendy znajdują się w pliku ["SKRYPT"](aggregationsForMongo.py "SKRYPT").
 
 ####### 1. Znajdź użytkownika wrzucającego film o nicku FCLEANDROELEONARDO
 ```py
@@ -241,7 +241,34 @@ Poniższe zapytanie wyświetla mi wszystkie kody pocztowe w obrębie oznaczonego
             ]
             ]]}}}})
 ```
+#####b) Otrzymane wyniki które w skrócie wygladają tak: 
+```sh
+...
+{ "_id" : "46290", "city" : "NORA", "loc" : [ -86.167118, 39.93077 ], "pop" : 75, "state" : "IN" }
+{ "_id" : "46280", "city" : "NORA", "loc" : [ -86.13894, 39.938417 ], "pop" : 5281, "state" : "IN" }
+{ "_id" : "46032", "city" : "CARMEL", "loc" : [ -86.124545, 39.971232 ], "pop" : 40090, "state" : "IN" }
+{ "_id" : "46038", "city" : "FISHERS", "loc" : [ -86.023048, 39.957486 ], "pop" : 11918, "state" : "IN" }
+...
+```
+przeklejamy do pliku, a następnie przy pomocy jq parsujemy je do formatu geoJson
+```sh
+cat indiano.json | jq -c '. | {"type": "Feature","geometry" :{"type": "Point","coordinates":[.loc[0],.loc[1]]},"properties":{_id,city,pop,state}}'
+```
 
+Brakuje nam jednak prefixu, oraz przecinków, poprawiamy to krótkim skryptem:
+```sh
+#dodaj prefix
+echo  "{ \"type\": \"FeatureCollection\", \"features\": [" > $2
+
+#zapytanie
+cat $1 |  jq -c '. | {"type": "Feature","geometry" :{"type": "Point","coordinates":[.loc[0],.loc[1]]},"properties":{_id,city,pop,state}}' >> $2
+
+#dodaj sufix
+echo "]}" >> $2
+
+#dodaj przecinki
+sed -i '' 's/$/,/g' $2
+```
 
 
 ####Mapki
