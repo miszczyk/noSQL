@@ -269,17 +269,13 @@ echo "]}" >> $2
 #dodaj przecinki
 sed -i '' 's/$/,/g' $2
 ```
-####Usuwamy przecinki z 1 i ostatniej linijki i nasz plik geojson jest gotowy:
+####Usuwamy przecinki z pierwszej i ostatniej linijki i nasz plik geojson jest gotowy:
 
 ["Kody pocztowe w Indianie"](indiano.geojson "Kody pocztowe w Indianie")
 
 
 
-####Mapki
 
-["Trzęsienia ziemi"](earthquakes.geojson "Trzęsienia ziemi")
-
-["Stany Ameryki"](states.geojson "Stany Ameryki")
 
 
 
