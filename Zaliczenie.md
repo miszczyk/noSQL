@@ -278,6 +278,14 @@ Znajdź 5 kodów pocztowych w promieniu 10 km od Białego Domu
 >db.zipcodes.find({loc: {$near: {$geometry: {type: "Point", coordinates: [-77.03651905059814,38.89834766079331],$maxDistance: 10000}}}}).limit(5)
 ```
 
+Znajdź wszystkie najbliższe kody pocztowe w promieniu 50km, poczynając od najbliższego brzegu do miasta (pomijając wyspy, odległość 1km wyciągnąłem z google maps).
+
+```sh
+>db.zipcodes.find({loc: {$nearSphere: {$geometry: {type: "Point", coordinates: [-74.04453635215759,40.689213094551995],$minDistance: 1000,$maxDistance:50}}}})
+```
+
+
+
 
 
 
