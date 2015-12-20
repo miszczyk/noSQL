@@ -1,0 +1,20 @@
+{ "_id" : "46290", "city" : "NORA", "loc" : [ -86.167118, 39.93077 ], "pop" : 75, "state" : "IN" }
+{ "_id" : "46280", "city" : "NORA", "loc" : [ -86.13894, 39.938417 ], "pop" : 5281, "state" : "IN" }
+{ "_id" : "46032", "city" : "CARMEL", "loc" : [ -86.124545, 39.971232 ], "pop" : 40090, "state" : "IN" }
+{ "_id" : "46038", "city" : "FISHERS", "loc" : [ -86.023048, 39.957486 ], "pop" : 11918, "state" : "IN" }
+{ "_id" : "46055", "city" : "MC CORDSVILLE", "loc" : [ -85.909502, 39.901823 ], "pop" : 1450, "state" : "IN" }
+{ "_id" : "46259", "city" : "ACTON", "loc" : [ -85.992603, 39.660901 ], "pop" : 3642, "state" : "IN" }
+{ "_id" : "46237", "city" : "SOUTHPORT", "loc" : [ -86.07891, 39.686777 ], "pop" : 18919, "state" : "IN" }
+{ "_id" : "46107", "city" : "BEECH GROVE", "loc" : [ -86.093299, 39.715434 ], "pop" : 13051, "state" : "IN" }
+{ "_id" : "46239", "city" : "WANAMAKER", "loc" : [ -86.008209, 39.721826 ], "pop" : 8611, "state" : "IN" }
+{ "_id" : "46229", "city" : "CUMBERLAND", "loc" : [ -85.983826, 39.792219 ], "pop" : 19914, "state" : "IN" }
+{ "_id" : "46236", "city" : "OAKLANDON", "loc" : [ -85.985059, 39.849588 ], "pop" : 31475, "state" : "IN" }
+{ "_id" : "46226", "city" : "LAWRENCE", "loc" : [ -86.048945, 39.836969 ], "pop" : 47144, "state" : "IN" }
+{ "_id" : "46216", "city" : "FORT BENJAMIN HA", "loc" : [ -86.016688, 39.857731 ], "pop" : 1566, "state" : "IN" }
+{ "_id" : "46256", "city" : "CASTLETON", "loc" : [ -86.023877, 39.90114 ], "pop" : 20589, "state" : "IN" }
+{ "_id" : "46250", "city" : "CASTLETON", "loc" : [ -86.069112, 39.9069 ], "pop" : 17196, "state" : "IN" }
+{ "_id" : "46219", "city" : "INDIANAPOLIS", "loc" : [ -86.049533, 39.782092 ], "pop" : 38198, "state" : "IN" }
+{ "_id" : "46201", "city" : "INDIANAPOLIS", "loc" : [ -86.109348, 39.775006 ], "pop" : 42096, "state" : "IN" }
+{ "_id" : "46204", "city" : "INDIANAPOLIS", "loc" : [ -86.153491, 39.771986 ], "pop" : 4327, "state" : "IN" }
+{ "_id" : "46202", "city" : "INDIANAPOLIS", "loc" : [ -86.159502, 39.785063 ], "pop" : 15672, "state" : "IN" }
+{ "_id" : "46205", "city" : "INDIANAPOLIS", "loc" : [ -86.138582, 39.826761 ], "pop" : 35328, "state" : "IN" }
