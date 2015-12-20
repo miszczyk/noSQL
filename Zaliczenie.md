@@ -85,7 +85,7 @@ sudo python -m easy_install -U pymongo
 ```
 
 
-*Wszystkie komendy znajdują się w pliku ["SKRYPT"](lol "SKRYPT").
+*Wszystkie komendy znajdują się w pliku ["SKRYPT"](aggregationsForMongo.py "SKRYPT").
 
 ####### 1. Znajdź użytkownika wrzucającego film o nicku FCLEANDROELEONARDO
 ```py
@@ -189,7 +189,7 @@ Pobralem geoJson z informacjami o stanach w ameryce oraz wykaz trzęsień ziemi 
 
 Import do mongo poleceniem:
 ```sh
-mongoimport -c states < states.json
+mongoimport --drop -d test -c zipcodes zips.json
 ```
 Dodajemy geo-indeks:
 ```sh
@@ -206,6 +206,70 @@ Pobieramy jq:
 ```sh
 brew install jq
 ```
+
+####Tworzenie GeoJsonów
+
+#####a) Tworzymy przykładowe zapytanie, 
+Wchodzimy na gejson.io i tworzymy sobie przykładowe punkty. W tym wypadku oznaczyłem cały teren zabudowany wokół Indianopolis, a następnie skopiowałem dane potrzebne mi do wykonania finda w bazie mongo.
+
+Poniższe zapytanie wyświetla mi wszystkie kody pocztowe w obrębie oznaczonego terenu:
+```sh
+>db.zipcodes.find({loc: {$geoWithin: {$geometry: {type: "Polygon", coordinates: [[
+            [ -86.15341186523436, 39.999215966720165 ],
+            [ -86.19186401367186, 39.9676482528045   ],
+            [ -86.18911743164062, 39.930800820752765 ],
+            [ -86.253662109375, 39.929747745342944 ],
+            [ -86.28387451171875, 39.902362098539726 ],
+            [ -86.28662109375, 39.8517752151841 ],
+            [ -86.29074096679688, 39.80959097923673 ],
+            [ -86.28936767578125, 39.740986355883564 ],
+            [ -86.33880615234375, 39.69239407904182 ],
+            [ -86.27151489257812, 39.69450749856091 ],
+            [ -86.187744140625, 39.687110247162934 ],
+            [ -86.220703125, 39.57288079854952 ],
+            [ -86.16439819335938, 39.577114881737586 ],
+            [ -86.12182617187499, 39.600397716215824 ],
+            [ -86.05728149414062, 39.592990390285024 ],
+            [ -85.97763061523438, 39.66491373749128 ],
+            [ -85.97625732421875, 39.73570624505104 ],
+            [ -85.97076416015625, 39.82752244475985 ],
+            [ -85.9625244140625, 39.86653357724533 ],
+            [ -85.88836669921874, 39.91289633555756 ],
+            [ -85.84991455078125, 39.961332959837826 ],
+            [ -86.00921630859375, 40.006579667838615 ],
+            [ -86.15341186523436, 39.999215966720165
+            ]
+            ]]}}}})
+```
+#####b) Otrzymane wyniki które w skrócie wygladają tak: 
+```sh
+...
+{ "_id" : "46290", "city" : "NORA", "loc" : [ -86.167118, 39.93077 ], "pop" : 75, "state" : "IN" }
+{ "_id" : "46280", "city" : "NORA", "loc" : [ -86.13894, 39.938417 ], "pop" : 5281, "state" : "IN" }
+{ "_id" : "46032", "city" : "CARMEL", "loc" : [ -86.124545, 39.971232 ], "pop" : 40090, "state" : "IN" }
+{ "_id" : "46038", "city" : "FISHERS", "loc" : [ -86.023048, 39.957486 ], "pop" : 11918, "state" : "IN" }
+...
+```
+przeklejamy do pliku, a następnie przy pomocy jq parsujemy je do formatu geoJson
+```sh
+cat indiano.json | jq -c '. | {"type": "Feature","geometry" :{"type": "Point","coordinates":[.loc[0],.loc[1]]},"properties":{_id,city,pop,state}}'
+```
+
+Brakuje nam jednak prefixu, oraz przecinków, poprawiamy to krótkim skryptem:
+```sh
+#dodaj prefix
+echo  "{ \"type\": \"FeatureCollection\", \"features\": [" > $2
+
+#zapytanie
+cat $1 |  jq -c '. | {"type": "Feature","geometry" :{"type": "Point","coordinates":[.loc[0],.loc[1]]},"properties":{_id,city,pop,state}}' >> $2
+
+#dodaj sufix
+echo "]}" >> $2
+
+#dodaj przecinki
+sed -i '' 's/$/,/g' $2
+```
+
 
 ####Mapki
 
