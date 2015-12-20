@@ -271,6 +271,9 @@ sed -i '' 's/$/,/g' $2
 ```
 ####Usuwamy przecinki z 1 i ostatniej linijki i nasz plik geojson jest gotowy:
 
+["Kody pocztowe w Indianie"](indiano.geojson "Kody pocztowe w Indianie")
+
+
 
 ####Mapki
 
