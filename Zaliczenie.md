@@ -279,9 +279,13 @@ Znajdź 5 kodów pocztowych w promieniu 10 km od Białego Domu
 ```
 
 Znajdź wszystkie najbliższe kody pocztowe w promieniu 50km, poczynając od najbliższego brzegu do miasta (pomijając wyspy, odległość 1km wyciągnąłem z google maps).
-
 ```sh
 >db.zipcodes.find({loc: {$nearSphere: {$geometry: {type: "Point", coordinates: [-74.04453635215759,40.689213094551995],$minDistance: 1000,$maxDistance:50}}}})
+```
+
+Wyświetl wszystkie kody pocztowe znajdujące się w obrębie Florydy.
+```sh
+>db.zipcodes.find({loc: {$geoIntersects: {$geometry: {type: "Polygon", coordinates: [[         [               -81.0791015625,               25.145284610685064             ],             [               -80.31005859375,               25.3241665257384             ],             [               -80.0244140625,               26.60817437403311             ],             [               -80.61767578124999,               27.994401411046148             ],             [               -81.298828125,               29.878755346037977             ],             [               -81.5185546875,               30.41078179084589             ],             [               -83.91357421875,               30.06909396443887             ],             [               -82.880859375,               29.11377539511439             ],             [               -82.63916015625,               28.632746799225856             ],             [               -82.880859375,               27.839076094777816             ],             [               -82.28759765625,               26.745610382199022             ],             [               -82.06787109374999,               26.64745870265938             ],             [               -81.0791015625,               25.145284610685064             ]            ]]}}}})
 ```
 
 
