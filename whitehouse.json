@@ -1,0 +1,5 @@
+{ "_id" : "20006", "city" : "WASHINGTON", "loc" : [ -77.044701, 38.896444 ], "pop" : 2317, "state" : "DC" }
+{ "_id" : "20301", "city" : "PENTAGON", "loc" : [ -77.038196, 38.891019 ], "pop" : 21, "state" : "DC" }
+{ "_id" : "20005", "city" : "WASHINGTON", "loc" : [ -77.031236, 38.906731 ], "pop" : 9862, "state" : "DC" }
+{ "_id" : "20004", "city" : "WASHINGTON", "loc" : [ -77.026303, 38.892955 ], "pop" : 11, "state" : "DC" }
+{ "_id" : "20036", "city" : "WASHINGTON", "loc" : [ -77.041434, 38.908704 ], "pop" : 4146, "state" : "DC" }

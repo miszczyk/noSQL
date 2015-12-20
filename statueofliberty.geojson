@@ -1,0 +1,22 @@
+{ "type": "FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.019025,40.693604]},"properties":{"_id":"10004","city":"GOVERNORS ISLAND","pop":3593,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.016323,40.710537]},"properties":{"_id":"10280","city":"NEW YORK","pop":5574,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.013474,40.708451]},"properties":{"_id":"10006","city":"NEW YORK","pop":119,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.008344,40.705649]},"properties":{"_id":"10005","city":"NEW YORK","pop":202,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.046878,40.722126]},"properties":{"_id":"07302","city":"JERSEY CITY","pop":32876,"state":"NJ"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.00141,40.679437]},"properties":{"_id":"11231","city":"BROOKLYN","pop":32101,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.088998,40.702007]},"properties":{"_id":"07305","city":"JERSEY CITY","pop":58655,"state":"NJ"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.075358,40.717973]},"properties":{"_id":"07304","city":"JERSEY CITY","pop":42101,"state":"NJ"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.007022,40.713905]},"properties":{"_id":"10007","city":"NEW YORK","pop":3374,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.001298,40.710092]},"properties":{"_id":"10038","city":"NEW YORK","pop":14015,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-73.99034,40.694021]},"properties":{"_id":"11201","city":"BROOKLYN","pop":46980,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.043149,40.732354]},"properties":{"_id":"07310","city":"JERSEY CITY","pop":944,"state":"NJ"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.002529,40.718511]},"properties":{"_id":"10013","city":"NEW YORK","pop":21860,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.066038,40.732125]},"properties":{"_id":"07306","city":"JERSEY CITY","pop":53257,"state":"NJ"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.001797,40.652113]},"properties":{"_id":"11232","city":"BROOKLYN","pop":22777,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-73.979797,40.68165]},"properties":{"_id":"11217","city":"BROOKLYN","pop":36232,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-73.987681,40.715231]},"properties":{"_id":"10002","city":"NEW YORK","pop":84143,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-73.998284,40.72553]},"properties":{"_id":"10012","city":"NEW YORK","pop":26365,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-73.982783,40.666863]},"properties":{"_id":"11215","city":"BROOKLYN","pop":63338,"state":"NY"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-74.013287,40.641165]},"properties":{"_id":"11220","city":"BROOKLYN","pop":76923,"state":"NY"}}
+]}

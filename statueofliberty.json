@@ -1,0 +1,20 @@
+{ "_id" : "10004", "city" : "GOVERNORS ISLAND", "loc" : [ -74.019025, 40.693604 ], "pop" : 3593, "state" : "NY" }
+{ "_id" : "10280", "city" : "NEW YORK", "loc" : [ -74.016323, 40.710537 ], "pop" : 5574, "state" : "NY" }
+{ "_id" : "10006", "city" : "NEW YORK", "loc" : [ -74.013474, 40.708451 ], "pop" : 119, "state" : "NY" }
+{ "_id" : "10005", "city" : "NEW YORK", "loc" : [ -74.008344, 40.705649 ], "pop" : 202, "state" : "NY" }
+{ "_id" : "07302", "city" : "JERSEY CITY", "loc" : [ -74.046878, 40.722126 ], "pop" : 32876, "state" : "NJ" }
+{ "_id" : "11231", "city" : "BROOKLYN", "loc" : [ -74.00141, 40.679437 ], "pop" : 32101, "state" : "NY" }
+{ "_id" : "07305", "city" : "JERSEY CITY", "loc" : [ -74.088998, 40.702007 ], "pop" : 58655, "state" : "NJ" }
+{ "_id" : "07304", "city" : "JERSEY CITY", "loc" : [ -74.075358, 40.717973 ], "pop" : 42101, "state" : "NJ" }
+{ "_id" : "10007", "city" : "NEW YORK", "loc" : [ -74.007022, 40.713905 ], "pop" : 3374, "state" : "NY" }
+{ "_id" : "10038", "city" : "NEW YORK", "loc" : [ -74.001298, 40.710092 ], "pop" : 14015, "state" : "NY" }
+{ "_id" : "11201", "city" : "BROOKLYN", "loc" : [ -73.99034, 40.694021 ], "pop" : 46980, "state" : "NY" }
+{ "_id" : "07310", "city" : "JERSEY CITY", "loc" : [ -74.043149, 40.732354 ], "pop" : 944, "state" : "NJ" }
+{ "_id" : "10013", "city" : "NEW YORK", "loc" : [ -74.002529, 40.718511 ], "pop" : 21860, "state" : "NY" }
+{ "_id" : "07306", "city" : "JERSEY CITY", "loc" : [ -74.066038, 40.732125 ], "pop" : 53257, "state" : "NJ" }
+{ "_id" : "11232", "city" : "BROOKLYN", "loc" : [ -74.001797, 40.652113 ], "pop" : 22777, "state" : "NY" }
+{ "_id" : "11217", "city" : "BROOKLYN", "loc" : [ -73.979797, 40.68165 ], "pop" : 36232, "state" : "NY" }
+{ "_id" : "10002", "city" : "NEW YORK", "loc" : [ -73.987681, 40.715231 ], "pop" : 84143, "state" : "NY" }
+{ "_id" : "10012", "city" : "NEW YORK", "loc" : [ -73.998284, 40.72553 ], "pop" : 26365, "state" : "NY" }
+{ "_id" : "11215", "city" : "BROOKLYN", "loc" : [ -73.982783, 40.666863 ], "pop" : 63338, "state" : "NY" }
+{ "_id" : "11220", "city" : "BROOKLYN", "loc" : [ -74.013287, 40.641165 ], "pop" : 76923, "state" : "NY" }

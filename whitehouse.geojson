@@ -1,0 +1,7 @@
+{ "type": "FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.044701,38.896444]},"properties":{"_id":"20006","city":"WASHINGTON","pop":2317,"state":"DC"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.038196,38.891019]},"properties":{"_id":"20301","city":"PENTAGON","pop":21,"state":"DC"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.031236,38.906731]},"properties":{"_id":"20005","city":"WASHINGTON","pop":9862,"state":"DC"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.026303,38.892955]},"properties":{"_id":"20004","city":"WASHINGTON","pop":11,"state":"DC"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-77.041434,38.908704]},"properties":{"_id":"20036","city":"WASHINGTON","pop":4146,"state":"DC"}}
+]}

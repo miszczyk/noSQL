@@ -1,0 +1,5 @@
+2015-12-20T03:35:27.110+0100 I NETWORK  [thread1] getaddrinfo("test") failed: nodename nor servname provided, or not known
+2015-12-20T03:35:27.110+0100 E QUERY    [thread1] Error: couldn't initialize connection to host test, address is invalid :
+connect@src/mongo/shell/mongo.js:226:14
+@(connect):1:21
+
