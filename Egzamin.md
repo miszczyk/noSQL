@@ -1,9 +1,19 @@
+####Zadania
+
+#####Dane
+
 Ściągamy json stąd: <link>
 
-Zapisujemy dane polecenim : <polecenie>
-   
+Json zawiera 1,769,759 rekordów
+
+#####Import do mongo
+Zapisujemy dane poleceniem : 
+
+```sh
+mongorestore --drop -d test -c youtube /Users/aidem/Desktop/zadanie1neo4js/Data/media/youtube.bson
+```
 Sprawdzamy przykladowy rekord:
-   
+```javascript   
 > db.youtube.findOne()
 {
 	"_id" : ObjectId("55f15665c7447c3da70b5519"),
@@ -14,11 +24,12 @@ Sprawdzamy przykladowy rekord:
 	"description" : "Videoclipe Oficial Da Música \" Cerveja \" Em 1997 ! Pra Matar As Saudades !!!",
 	"duration" : "204",
 }
+```
 
-	Aby wykonać jakieś ciekawe agregacje, musimy najpierw przekonwertowac nasze dane ze stringow:
+#####Aby wykonać jakieś ciekawe agregacje, musimy najpierw przekonwertowac nasze dane ze stringow:
 	
-	Zamieniamy pole "duration" na wartosc INT i zapisujemy w polu durationtonumber:
-	
+#####Zamieniamy pole "duration" na wartosc INT i zapisujemy w polu durationtonumber:
+```javascript 	
 	db.youtube.find().forEach(function(doc) {
 	doc.durationtonumber = new NumberInt(doc.duration);
     	db.youtube.save(doc);
@@ -30,7 +41,7 @@ Sprawdzamy przykladowy rekord:
     	doc.uploadtodate = new Date(doc.upload_date);
     	db.youtube.save(doc);
 	});
-	
+```	
 	Teraz nasz dane wyglądają tak:
 	
 	> db.youtube.findOne()
