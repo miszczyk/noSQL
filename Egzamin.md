@@ -69,7 +69,7 @@ Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 reko
 
 #####Przykładowe agregacje w javascript:
 	
-1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
+#####1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
 
 ```javascript 	
 	>db.youtube.aggregate({$group:{_id:"result",length:{$sum: "$durationtonumber"}}})
@@ -80,7 +80,7 @@ Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 reko
 
 Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
 	
-2. Wyświetl 10 najbardziej aktywnych uploaderów:
+#####2. Wyświetl 10 najbardziej aktywnych uploaderów:
  
 ```javascript 	
 	db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
@@ -99,12 +99,12 @@ Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W s
 { "_id" : "Cisco", "NumberOfUploads" : 5149 }
 ```
 
-3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
+#####3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
 
 Dla 2015:
 
 ```javascript 
-		>db.youtube.aggregate( [
+>db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2015-01-01T00:00:00Z"), $lte : new ISODate("2015-12-31T23:59:59Z")  } } },
   { $group: { _id: null, count: { $sum: 1 } } }
 ] );
@@ -116,7 +116,7 @@ Dla 2015:
 Dla 2006:
 
 ```javascript 		
-		db.youtube.aggregate( [
+>db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
   { $group: { _id: null, count: { $sum: 1 } } }
 ] );
@@ -127,9 +127,9 @@ Dla 2006:
 
 itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 		
-4. Srednia dlugosc filmikow w danym roku:
+#####4. Srednia dlugosc filmikow w danym roku:
 ```javascript 		
-			db.youtube.aggregate( [
+>db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
   { $group: { _id: null, AverageLength: { $avg: "$durationtonumber"} } }
 ] );
