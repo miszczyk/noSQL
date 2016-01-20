@@ -3,6 +3,6 @@
 3. Aby wykonać ciekawe agregacje na naszych danych, najpierw konwertujemy pole "duration" do zmiennej int poleceniem:
 
    db.youtube.find().forEach(function(doc) {
-    doc.durationINT = new NumberInt(doc.duration);
+    doc.durationtonumber = new NumberInt(doc.duration);
     db.youtube.save(doc);
 });
