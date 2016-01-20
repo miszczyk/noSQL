@@ -59,7 +59,6 @@ Sprawdzamy przykladowy rekord:
 	"description" : "Videoclipe Oficial Da Música \" Cerveja \" Em 1997 ! Pra Matar As Saudades !!!",
 	"duration" : "204",
 	"durationtonumber" : 204,
-	"durationINT" : 0,
 	"uploadtodate" : ISODate("2011-08-30T00:00:00Z")
 }
 ```
