@@ -53,7 +53,7 @@ Sprawdzamy przykladowy rekord:
 	
 	1. Zwroc calkowita sume dulgosci, wszystkich wrzuconych filmow
 	
-	>db.youtube.aggregate({$group:{_id:"result",length:{$sum: „$durationtonumber"}}})
+	>db.youtube.aggregate({$group:{_id:"result",length:{$sum: "$durationtonumber"}}})
 
    
 	zwraca:
@@ -101,6 +101,19 @@ Sprawdzamy przykladowy rekord:
 		{ "_id" : null, "count" : 7027 }
 		
 		itd. Jak widac liczba wrzucanych filmow niezle wzrosla przez te lata.
+		
+		
+		
+		4. Srednia dlugosc filmikow w danym roku:
+		
+			db.youtube.aggregate( [
+  { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
+  { $group: { _id: null, AverageLength: { $avg: "$durationtonumber"} } }
+] );
+
+		wynik:
+		
+		{ "_id" : null, "AverageLength" : 194.72264124092786 }
 	
 	
 	
