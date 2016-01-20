@@ -203,10 +203,10 @@ def VideosCountYear():
 
 def AverageVideoLengthYear():
 	myagg = [
-	{ "$match": { "uploadtodate": { "$gte" : datetime(2015, 1, 1), "$lte" : datetime(2015, 12, 31)  } } },
-  	{ "$group": { "_id": "null", "count": { "$sum": 1 } } }
+	{ "$match": { "uploadtodate": { "$gte" : datetime(2006, 1, 1), "$lte" : datetime(2006, 12, 31)  } } },
+    { "$group": { "_id": "null", "AverageLength": { "$avg": "$durationtonumber"} } }
 	]
-	
+
 	query = db.youtube.aggregate(myagg)
 
 	for i in query:
@@ -214,5 +214,5 @@ def AverageVideoLengthYear():
 
 #Menus()
 
-VideosCountYear()
+AverageVideoLengthYear()
 	
