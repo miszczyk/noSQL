@@ -137,5 +137,82 @@ itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 ```javascript 
 		{ "_id" : null, "AverageLength" : 194.72264124092786 }
 ```
+
+CODECOPY
+
+from pymongo import MongoClient
+import pprint
+from datetime import datetime
+client = MongoClient()
+db = client.test
+
+
+
+def Menus():
+	print("Choose aggregation by letter:\n\n")
+	print("a - Show summary duration of all uploaded videos\n")
+	print("u - Show X most active users\n")
+	print("l - Show number of videos uploaded year X\n")
+	print("g - Find count of movies shorter than 1 min\n\n")
+
+
+	userChoice = raw_input("Choose option:")
+
+	if userChoice == 'a':
+		AllVideosDuration
+	elif userChoice == 'u':
+		MostActiveUsers()
+	elif userChoice == 'l':
+		VideosCountYear()
+	elif userChoice == 'g':
+		AverageVideoLengthYear()
+	else:
+		Menus()
+
+def AllVideosDuration():
+	myagg = [
+	{"$group":{"_id":"result","length":{"$sum": "$durationtonumber"}}}
+	]
 	
+  	mydata = db.youtube.aggregate(myagg)
+
+	for i in mydata:
+		print i
+
+def MostActiveUsers():
+
+	myagg = [
+	{ "$group": { "_id": "$uploader", "NumberOfUploads": { "$sum": 1 } } } ,
+	{ "$sort": { "NumberOfUploads": -1 } }, { "$limit": 10 }
+	]
+
+  	query = db.youtube.aggregate(myagg)
+
+	for i in query:
+		print i
+
+def VideosCountYear():
+	myagg = [
+	{ "$match": { "uploadtodate": { "$gte" : datetime(2015, 1, 1), "$lte" : datetime(2015, 12, 31)  } } },
+  	{ "$group": { "_id": "null", "count": { "$sum": 1 } } }
+	]
+	query = db.youtube.aggregate(myagg)
+
+	for i in query:
+		print i
+
+def AverageVideoLengthYear():
+	myagg = [
+	{ "$match": { "uploadtodate": { "$gte" : datetime(2015, 1, 1), "$lte" : datetime(2015, 12, 31)  } } },
+  	{ "$group": { "_id": "null", "count": { "$sum": 1 } } }
+	]
+	
+	query = db.youtube.aggregate(myagg)
+
+	for i in query:
+		print i
+
+#Menus()
+
+VideosCountYear()
 	
