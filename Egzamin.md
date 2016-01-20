@@ -2,7 +2,7 @@
 
 #####Dane
 
-Ściągamy json stąd: <link>
+Ściągamy json stąd: https://dl.dropboxusercontent.com/u/15056258/mongodb/media.zip 
 
 Json zawiera 1,769,759 rekordów
 
