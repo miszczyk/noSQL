@@ -29,21 +29,26 @@ Sprawdzamy przykladowy rekord:
 #####Aby wykonać jakieś ciekawe agregacje, musimy najpierw przekonwertowac nasze dane ze stringow:
 	
 #####Zamieniamy pole "duration" na wartosc INT i zapisujemy w polu durationtonumber:
+
 ```javascript 	
 	db.youtube.find().forEach(function(doc) {
 	doc.durationtonumber = new NumberInt(doc.duration);
     	db.youtube.save(doc);
 	});
-	
-	Następnie pole "upload_date" na wartosc DATE i zapisujemy w polu uploadtodate:
-	
+```	
+
+#####Następnie pole "upload_date" na wartosc DATE i zapisujemy w polu uploadtodate:
+
+```javascript 	
 	db.youtube.find().forEach(function(doc) {
     	doc.uploadtodate = new Date(doc.upload_date);
     	db.youtube.save(doc);
 	});
 ```	
-	Teraz nasz dane wyglądają tak:
-	
+
+#####Teraz nasz dane wyglądają tak:
+
+```javascript
 	> db.youtube.findOne()
 {
 	"_id" : ObjectId("55f15665c7447c3da70b5519"),
@@ -57,8 +62,9 @@ Sprawdzamy przykladowy rekord:
 	"durationINT" : 0,
 	"uploadtodate" : ISODate("2011-08-30T00:00:00Z")
 }
+```
 
-	Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 rekordów.
+Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 rekordów.
 
 3. Przykładowe agregacje w javascript:
 	
