@@ -6,3 +6,9 @@
     doc.durationtonumber = new NumberInt(doc.duration);
     db.youtube.save(doc);
 });
+
+zwraca:
+
+{ "_id" : "Total", "length" : 855414093 }
+
+Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
