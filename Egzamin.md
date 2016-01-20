@@ -1,9 +1,10 @@
-1. Ściągamy json stąd: <link>
-2. Zapisujemy dane polecenim : <polecenie>
+Ściągamy json stąd: <link>
+
+Zapisujemy dane polecenim : <polecenie>
    
-   Sprawdzamy przykladowy rekord:
+Sprawdzamy przykladowy rekord:
    
-   > db.youtube.findOne()
+> db.youtube.findOne()
 {
 	"_id" : ObjectId("55f15665c7447c3da70b5519"),
 	"id" : "--0zjb5SZck",
@@ -14,15 +15,73 @@
 	"duration" : "204",
 }
 
-3. Aby wykonać ciekawe agregacje na naszych danych, najpierw konwertujemy pole "duration" do zmiennej int poleceniem:
+	Aby wykonać jakieś ciekawe agregacje, musimy najpierw przekonwertowac nasze dane ze stringow:
+	
+	Zamieniamy pole "duration" na wartosc INT i zapisujemy w polu durationtonumber:
+	
+	db.youtube.find().forEach(function(doc) {
+	doc.durationtonumber = new NumberInt(doc.duration);
+    	db.youtube.save(doc);
+	});
+	
+	Następnie pole "upload_date" na wartosc DATE i zapisujemy w polu uploadtodate:
+	
+	db.youtube.find().forEach(function(doc) {
+    	doc.uploadtodate = new Date(doc.upload_date);
+    	db.youtube.save(doc);
+	});
+	
+	Teraz nasz dane wyglądają tak:
+	
+	> db.youtube.findOne()
+{
+	"_id" : ObjectId("55f15665c7447c3da70b5519"),
+	"id" : "--0zjb5SZck",
+	"uploader" : "FCLEANDROELEONARDO",
+	"upload_date" : "2011-08-30",
+	"title" : "Leandro & Leonardo - Cerveja - Videoclipe Oficial",
+	"description" : "Videoclipe Oficial Da Música \" Cerveja \" Em 1997 ! Pra Matar As Saudades !!!",
+	"duration" : "204",
+	"durationtonumber" : 204,
+	"durationINT" : 0,
+	"uploadtodate" : ISODate("2011-08-30T00:00:00Z")
+}
 
-   db.youtube.find().forEach(function(doc) {
-    doc.durationtonumber = new NumberInt(doc.duration);
-    db.youtube.save(doc);
-});
+	Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 rekordów.
 
-zwraca:
+3. Przykładowe agregacje w javascript:
+	
+	1. Zwroc calkowita sume dulgosci, wszystkich wrzuconych filmow
+	
+	>db.youtube.aggregate({$group:{_id:"result",length:{$sum: „$durationtonumber"}}})
 
-{ "_id" : "Total", "length" : 855414093 }
+   
+	zwraca:
 
-Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
+	{ "_id" : "Total", "length" : 855414093 }
+
+	Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
+	
+	2. Wyswietl 10 najbardziej aktywnych uploaderow:
+	
+	db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
+
+	wynik:
+	
+	> db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
+{ "_id" : "IGNentertainment", "NumberOfUploads" : 104635 }
+{ "_id" : "TEDxTalks", "NumberOfUploads" : 52275 }
+{ "_id" : "StarMakerApp", "NumberOfUploads" : 48709 }
+{ "_id" : "BBC", "NumberOfUploads" : 17725 }
+{ "_id" : "gamespot", "NumberOfUploads" : 16340 }
+{ "_id" : "TheYoungTurks", "NumberOfUploads" : 16087 }
+{ "_id" : "ubisoft", "NumberOfUploads" : 7660 }
+{ "_id" : "CrossFitHQ", "NumberOfUploads" : 6931 }
+{ "_id" : "amctheatres", "NumberOfUploads" : 6811 }
+{ "_id" : "Cisco", "NumberOfUploads" : 5149 }
+
+	3. Suma wrzuconych filmow w poszczegolnych latach:
+	
+	
+	
+	
