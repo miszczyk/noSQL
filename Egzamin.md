@@ -66,25 +66,27 @@ Sprawdzamy przykladowy rekord:
 
 Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 rekordów.
 
-3. Przykładowe agregacje w javascript:
+####Agregacje
+
+#####Przykładowe agregacje w javascript:
 	
-	1. Zwroc calkowita sume dulgosci, wszystkich wrzuconych filmow
-	
+1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
+
+```javascript 	
 	>db.youtube.aggregate({$group:{_id:"result",length:{$sum: "$durationtonumber"}}})
-
-   
-	zwraca:
-
+```
+```javascript 
 	{ "_id" : "Total", "length" : 855414093 }
+```
 
-	Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
+Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W sumie:  ~ 14,256,901 godzin.
 	
-	2. Wyswietl 10 najbardziej aktywnych uploaderow:
-	
+2. Wyświetl 10 najbardziej aktywnych uploaderów:
+ 
+```javascript 	
 	db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
-
-	wynik:
-	
+```
+```javascript 	
 	> db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
 { "_id" : "IGNentertainment", "NumberOfUploads" : 104635 }
 { "_id" : "TEDxTalks", "NumberOfUploads" : 52275 }
@@ -96,41 +98,45 @@ Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 reko
 { "_id" : "CrossFitHQ", "NumberOfUploads" : 6931 }
 { "_id" : "amctheatres", "NumberOfUploads" : 6811 }
 { "_id" : "Cisco", "NumberOfUploads" : 5149 }
+```
 
-	3. Suma wrzuconych filmow w poszczegolnych latach:
-		Dla 2015:
-		db.youtube.aggregate( [
+3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
+
+Dla 2015:
+
+```javascript 
+		>db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2015-01-01T00:00:00Z"), $lte : new ISODate("2015-12-31T23:59:59Z")  } } },
   { $group: { _id: null, count: { $sum: 1 } } }
 ] );
-
-		wynik:
+```
+```javascript 
 		{ "_id" : null, "count" : 753685 }
-		
-		Dla 2006:
-		
+```
+
+Dla 2006:
+
+```javascript 		
 		db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
   { $group: { _id: null, count: { $sum: 1 } } }
 ] );
-
-		wynik:
+```
+```javascript 
 		{ "_id" : null, "count" : 7027 }
+```
+
+itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 		
-		itd. Jak widac liczba wrzucanych filmow niezle wzrosla przez te lata.
-		
-		
-		
-		4. Srednia dlugosc filmikow w danym roku:
-		
+4. Srednia dlugosc filmikow w danym roku:
+```javascript 		
 			db.youtube.aggregate( [
   { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
   { $group: { _id: null, AverageLength: { $avg: "$durationtonumber"} } }
 ] );
-
-		wynik:
-		
+```
+```javascript 
 		{ "_id" : null, "AverageLength" : 194.72264124092786 }
-	
+```
 	
 	
