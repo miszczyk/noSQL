@@ -83,10 +83,10 @@ Jest to suma długości wszystkich filmów wrzuconych na youtube w minutach. W s
 #####2. Wyświetl 10 najbardziej aktywnych uploaderów:
  
 ```javascript 	
-	db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
+db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } ,
+{ $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
 ```
 ```javascript 	
-	> db.youtube.aggregate({ $group: { _id: "$uploader", NumberOfUploads: { $sum: 1 } } } , { $sort: { NumberOfUploads: -1 } }, { $limit: 10 })
 { "_id" : "IGNentertainment", "NumberOfUploads" : 104635 }
 { "_id" : "TEDxTalks", "NumberOfUploads" : 52275 }
 { "_id" : "StarMakerApp", "NumberOfUploads" : 48709 }
