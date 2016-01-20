@@ -81,7 +81,26 @@ Sprawdzamy przykladowy rekord:
 { "_id" : "Cisco", "NumberOfUploads" : 5149 }
 
 	3. Suma wrzuconych filmow w poszczegolnych latach:
-	
+		Dla 2015:
+		db.youtube.aggregate( [
+  { $match: { uploadtodate: { $gte : new ISODate("2015-01-01T00:00:00Z"), $lte : new ISODate("2015-12-31T23:59:59Z")  } } },
+  { $group: { _id: null, count: { $sum: 1 } } }
+] );
+
+		wynik:
+		{ "_id" : null, "count" : 753685 }
+		
+		Dla 2006:
+		
+		db.youtube.aggregate( [
+  { $match: { uploadtodate: { $gte : new ISODate("2006-01-01T00:00:00Z"), $lte : new ISODate("2006-12-31T23:59:59Z")  } } },
+  { $group: { _id: null, count: { $sum: 1 } } }
+] );
+
+		wynik:
+		{ "_id" : null, "count" : 7027 }
+		
+		itd. Jak widac liczba wrzucanych filmow niezle wzrosla przez te lata.
 	
 	
 	
