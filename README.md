@@ -4,7 +4,7 @@
     - [x] EDA + GEOJSON
     - [ ] NEO4JS
 
-2.[Egzamin](Egzamin.md):
+2. [Egzamin](Egzamin.md):
     - [x] AGGREGATIONS PIPELINE
     - [ ] MAP REDUCE
 
