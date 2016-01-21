@@ -239,6 +239,10 @@ Year:  2006    Videos Count:  7027
 Year:  2007    Videos Count:  17871
 ```
 
+Dla wszystkich:
+
+![import](img/ChartGo.png)
+
 #####4. Srednia dlugosc filmikow w danym roku:
 
 ```python
@@ -284,5 +288,7 @@ Year:  2013    Average videos duration:  519.686042338
 ```
 
 Dla wszystkich lat:
+
+
 ![import](img/avgdur.png)
 
