@@ -167,6 +167,36 @@ Minutes 855414093    Hours 14256901
 
 #####2. Wyświetl 10 najbardziej aktywnych uploaderów:
 
+```python
+def MostActiveUsers():
+
+	myagg = [
+	{ "$group": { "_id": "$uploader", "NumberOfUploads": { "$sum": 1 } } } ,
+	{ "$sort": { "NumberOfUploads": -1 } }, { "$limit": 10 }
+	]
+
+  	query = db.youtube.aggregate(myagg)
+
+	for i in query:
+		print "Uploaded by: " + i["_id"],"   Number of uploads:", i["NumberOfUploads"]
+
+```
+
+Wynik:
+
+```python
+	Uploaded by: IGNentertainment    Number of uploads: 104635
+Uploaded by: TEDxTalks    Number of uploads: 52275
+Uploaded by: StarMakerApp    Number of uploads: 48709
+Uploaded by: BBC    Number of uploads: 17725
+Uploaded by: gamespot    Number of uploads: 16340
+Uploaded by: TheYoungTurks    Number of uploads: 16087
+Uploaded by: ubisoft    Number of uploads: 7660
+Uploaded by: CrossFitHQ    Number of uploads: 6931
+Uploaded by: amctheatres    Number of uploads: 6811
+Uploaded by: Cisco    Number of uploads: 5149
+```
+
 #####3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
 
 ```python
