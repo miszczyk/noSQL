@@ -140,7 +140,7 @@ itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 
 ####Agregacje python dzięki PyMongo
 
-#####Cały skrypt znajduje się tutaj <link>
+#####Cały skrypt znajduje się tutaj ["AGREGACJE PYTHON"](aggregations.py "AGREGACJE PYTHON")
 #####Poniżej znajdują się funkcje powyższego skryptu i ich output.
 
 1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
@@ -194,4 +194,46 @@ Year:  2007    Videos Count:  17871
 ```
 
 #####4. Srednia dlugosc filmikow w danym roku:
-	
+
+```python
+def AverageVideoLengthYear():
+
+	print "\nChoose range of years (value have to be between 2005 and 2015)"
+	dateFrom = raw_input("From\n")
+	dateTo = raw_input("To\n")
+	if dateFrom > dateTo:
+		print "\n Wrong values, try again! \n"
+		Menus()
+		return
+
+	counter = int(dateTo) - int(dateFrom)
+	if counter > 10:
+		print "\n Wrong values, try again! \n"
+		Menus()
+		return
+
+	counter += 1
+
+	for k in range(counter):
+		myagg = [
+		{ "$match": { "uploadtodate": { "$gte" : datetime(int(dateFrom), 1, 1), "$lte" : datetime(int(dateFrom), 12, 31)  } } },
+    	{ "$group": { "_id": "null", "AverageLength": { "$avg": "$durationtonumber"} } }
+		]
+		query = db.youtube.aggregate(myagg)
+
+		for i in query:
+			print "Year: " , dateFrom , "   Average videos duration: " , i["AverageLength"]
+
+		dateFrom = int(dateFrom) + 1	
+```
+
+Przykładowy wynik dla filmów od 2010 do 2013.
+
+```python
+Year:  2010    Average videos duration:  297.127233573
+Year:  2011    Average videos duration:  272.212158674
+Year:  2012    Average videos duration:  483.524270075
+Year:  2013    Average videos duration:  519.686042338
+
+```
+
