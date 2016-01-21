@@ -143,10 +143,26 @@ itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 #####Cały skrypt znajduje się tutaj ["AGREGACJE PYTHON"](aggregations.py "AGREGACJE PYTHON")
 #####Poniżej znajdują się funkcje powyższego skryptu i ich output.
 
-1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
+#####1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
 
 ```python
+def AllVideosDuration():
+	myagg = [
+	{"$group":{"_id":"result","length":{"$sum": "$durationtonumber"}}}
+	]
+	
+  	mydata = db.youtube.aggregate(myagg)
 
+	for i in mydata:
+		print "All videos uploaded duration summary:\n"
+		print "Minutes",i["length"], "   Hours",i["length"]/60
+
+```
+
+Wynik:
+
+```python
+Minutes 855414093    Hours 14256901
 ```
 
 #####2. Wyświetl 10 najbardziej aktywnych uploaderów:
