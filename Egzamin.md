@@ -65,7 +65,7 @@ Sprawdzamy przykladowy rekord:
 
 Ciekawostka: obie operacje zajęły około 20 minut, dla wszystkich 1769759 rekordów.
 
-####Agregacje
+####Agregacje java script
 
 #####Przykładowe agregacje w javascript:
 	
@@ -138,81 +138,60 @@ itd. Jak widać liczba wrzucanych filmów nieźle wzrosła przez te lata.
 		{ "_id" : null, "AverageLength" : 194.72264124092786 }
 ```
 
-CODECOPY
+####Agregacje python dzięki PyMongo
 
-from pymongo import MongoClient
-import pprint
-from datetime import datetime
-client = MongoClient()
-db = client.test
+#####Cały skrypt znajduje się tutaj <link>
+#####Poniżej znajdują się funkcje powyższego skryptu i ich output.
 
+1. Zwróć całkowitą sumę długości wszystkich filmów wrzuconych na youtube:
 
+```python
 
-def Menus():
-	print("Choose aggregation by letter:\n\n")
-	print("a - Show summary duration of all uploaded videos\n")
-	print("u - Show X most active users\n")
-	print("l - Show number of videos uploaded year X\n")
-	print("g - Find count of movies shorter than 1 min\n\n")
+```
 
+#####2. Wyświetl 10 najbardziej aktywnych uploaderów:
 
-	userChoice = raw_input("Choose option:")
+#####3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
 
-	if userChoice == 'a':
-		AllVideosDuration
-	elif userChoice == 'u':
-		MostActiveUsers()
-	elif userChoice == 'l':
-		VideosCountYear()
-	elif userChoice == 'g':
-		AverageVideoLengthYear()
-	else:
-		Menus()
-
-def AllVideosDuration():
-	myagg = [
-	{"$group":{"_id":"result","length":{"$sum": "$durationtonumber"}}}
-	]
-	
-  	mydata = db.youtube.aggregate(myagg)
-
-	for i in mydata:
-		print i
-
-def MostActiveUsers():
-
-	myagg = [
-	{ "$group": { "_id": "$uploader", "NumberOfUploads": { "$sum": 1 } } } ,
-	{ "$sort": { "NumberOfUploads": -1 } }, { "$limit": 10 }
-	]
-
-  	query = db.youtube.aggregate(myagg)
-
-	for i in query:
-		print i
-
+```python
 def VideosCountYear():
-	myagg = [
-	{ "$match": { "uploadtodate": { "$gte" : datetime(2015, 1, 1), "$lte" : datetime(2015, 12, 31)  } } },
-  	{ "$group": { "_id": "null", "count": { "$sum": 1 } } }
-	]
-	query = db.youtube.aggregate(myagg)
 
-	for i in query:
-		print i
+	print "\nChoose range of years (value have to be between 2005 and 2015)"
+	dateFrom = raw_input("From\n")
+	dateTo = raw_input("To\n")
+	if dateFrom > dateTo:
+		print "\n Wrong values, try again! \n"
+		Menus()
+		return
 
-def AverageVideoLengthYear():
-	myagg = [
-	{ "$match": { "uploadtodate": { "$gte" : datetime(2006, 1, 1), "$lte" : datetime(2006, 12, 31)  } } },
-    { "$group": { "_id": "null", "AverageLength": { "$avg": "$durationtonumber"} } }
-	]
+	counter = int(dateTo) - int(dateFrom)
+	if counter > 10:
+		print "\n Wrong values, try again! \n"
+		Menus()
+		return
 
-	query = db.youtube.aggregate(myagg)
+	counter += 1
 
-	for i in query:
-		print i
+	for k in range(counter):
+		myagg = [
+		{ "$match": { "uploadtodate": { "$gte" : datetime(int(dateFrom), 1, 1), "$lte" : datetime(int(dateFrom), 12, 31)  } } },
+	  	{ "$group": { "_id": "null", "count": { "$sum": 1 } } }
+		]
+		query = db.youtube.aggregate(myagg)
 
-#Menus()
+		for i in query:
+			print "Year: " , dateFrom , "   Videos Count: " , i["count"]
 
-AverageVideoLengthYear()
+		dateFrom = int(dateFrom) + 1
+```
+
+Przykładowy wynik dla filmów od 2005 do 2007.
+
+```python
+Year:  2005    Videos Count:  158
+Year:  2006    Videos Count:  7027
+Year:  2007    Videos Count:  17871
+```
+
+#####4. Srednia dlugosc filmikow w danym roku:
 	
