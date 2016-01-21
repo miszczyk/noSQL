@@ -41,14 +41,14 @@ def AllVideosDuration():
 def MostActiveUsers():
 
 	myagg = [
-	{ "$group": { "_id": "$uploader", "NumberOfUploads:": { "$sum": 1 } } } ,
+	{ "$group": { "_id": "$uploader", "NumberOfUploads": { "$sum": 1 } } } ,
 	{ "$sort": { "NumberOfUploads": -1 } }, { "$limit": 10 }
 	]
 
   	query = db.youtube.aggregate(myagg)
 
 	for i in query:
-		print "Uploaded by: " + i["_id"],"   Number of uploads", i["NumberOfUploads"]
+		print "Uploaded by: " + i["_id"],"   Number of uploads:", i["NumberOfUploads"]
 
 def VideosCountYear():
 
