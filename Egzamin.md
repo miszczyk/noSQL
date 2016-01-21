@@ -196,7 +196,9 @@ Uploaded by: CrossFitHQ    Number of uploads: 6931
 Uploaded by: amctheatres    Number of uploads: 6811
 Uploaded by: Cisco    Number of uploads: 5149
 ```
+Wykres:
 
+![import](img/percent.png)
 #####3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
 
 ```python
@@ -239,7 +241,7 @@ Year:  2006    Videos Count:  7027
 Year:  2007    Videos Count:  17871
 ```
 
-Dla wszystkich:
+Dla wszystkich lat:
 
 ![import](img/ChartGo.png)
 
