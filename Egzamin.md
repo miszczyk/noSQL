@@ -283,3 +283,6 @@ Year:  2013    Average videos duration:  519.686042338
 
 ```
 
+Dla wszystkich lat:
+![import](img/avgdur.png)
+
