@@ -196,7 +196,7 @@ Uploaded by: CrossFitHQ    Number of uploads: 6931
 Uploaded by: amctheatres    Number of uploads: 6811
 Uploaded by: Cisco    Number of uploads: 5149
 ```
-Wykres:
+Wykres prezentujący procentowy udział w całkowitej liczbie uploadów:
 
 ![import](img/percent.png)
 #####3. Pokaż liczbę wrzuconych filmów w poszczególnych latach:
